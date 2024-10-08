@@ -85,7 +85,7 @@ img, svg {
 
 body {
     width: 100vw;
-    overflow-x: auto;
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -93,6 +93,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
 }
 
 .container {
@@ -102,6 +103,8 @@ body {
 }
 
 .gradient-button {
+    min-width: max-content;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,6 +126,11 @@ body {
 }
 
 /*Header*/
+
+.header {
+    position: relative;
+    z-index: 4;
+}
 
 .header_logo {
     font-weight: 700;
@@ -148,24 +156,36 @@ body {
 }
 
 /*FIRST SECTION*/
-.section__first {
+.hero {
+    position: relative;
+    z-index: 0;
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 200px 50px;
+}
+
+.hero::after {
+    content: "";
+    height: 120vh;
     background-image: url("assets/images/Vector.png");
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
+    position: absolute;
+    z-index: -1;
+    bottom: 20%;
+    right: 0;
+    left: 10%;
 }
 
 @media screen and (max-width: 768px) {
-    .section__first {
+    .hero {
         background: none;
     }
 }
 
-.section____first__wrapper {
+.hero__wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -173,18 +193,18 @@ body {
     max-width: 1200px;
 }
 
-.section__first__wrapper__description {
+.hero__wrapper__description {
     max-width: 500px;
 }
 
-.section__first__wrapper__description header h1 {
+.hero__wrapper__description header h1 {
     font-weight: 700;
     font-size: 3rem;
     margin-bottom: 20px;
     color: #000;
 }
 
-.section__first__wrapper__description p {
+.hero__wrapper__description p {
     font-size: 1.2rem;
     color: #666;
     margin-bottom: 30px;
@@ -193,6 +213,8 @@ body {
 .description__button__wrapper {
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 100;
 }
 
 .description__button__wrapper span {
@@ -215,22 +237,11 @@ body {
     margin-right: 8px;
 }
 
-.description__button__wrapper button {
-    background-color: #FF7052;
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 .description__button__wrapper button:hover {
     background-color: #ff4b2e;
 }
 
-.section__first__wrapper__image {
+.hero__wrapper__image {
     flex-shrink: 0;
     max-width: 600px;
     width: 100%;
@@ -238,17 +249,24 @@ body {
     justify-content: right;
 }
 
-.section__first__wrapper__image img {
+.hero__wrapper__image img {
     width: 100%;
     height: auto;
+}
+
+.hero__button {
+    position: relative;
+    z-index: 5;
+    padding: 16px 32px;
+    border-radius: 32px;
 }
 /*FIRST SECTION MOBILE*/
 
 @media screen and (max-width: 1000px) {
-    .section__first {
+    .hero {
         padding: 20px 40px;
     }
-    .section____first__wrapper {
+    .hero__wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -256,7 +274,7 @@ body {
         width: 80%;
         max-width: 1200px;
     }
-    .section__first__wrapper__description {
+    .hero__wrapper__description {
         margin-top: 20px;
         order: 2;
         display: flex;
@@ -265,7 +283,7 @@ body {
         justify-content: center;
         text-align: center;
     }
-    .section__first__wrapper__description header h1 {
+    .hero__wrapper__description header h1 {
         font-weight: 400;
         font-size: 2rem;
         margin-bottom: 20px;
@@ -277,7 +295,7 @@ body {
     .description__button__wrapper button {
         margin-top: 20px;
     }
-    .section__first__wrapper__image{
+    .hero__wrapper__image{
         order: 1;
         justify-content: center;
     }
@@ -521,17 +539,6 @@ body {
 .section__free-analysis__wrapper p span {
     color: #FE506C;
 }
-.section__free-analysis__wrapper button {
-    background-color: #FF7052;
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 .section__numbers {
     width: 100%;
     display: flex;
@@ -628,6 +635,75 @@ body {
 
     .footer_top-links-block {
         max-width: none;
+        width: 100%;
+    }
+}
+
+.faq {
+    margin-bottom: 80px;
+}
+
+.faq__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.faq__tab {
+    width: 31%;
+}
+
+.faq__tab, .faq__tab-item {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.faq__tab-item {
+    gap: 40px;
+}
+
+.faq__tab-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.faq__tab-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq__tab-list {
+    padding-left: 16px;
+}
+
+.faq__tab-list-item:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.faq__tab-list-item, .faq__tab-subtitle, .faq__tab-text {
+    color: var(--color-gray);
+}
+
+@media screen and (max-width: 768px) {
+    .faq {
+        margin-bottom: 60px;
+    }
+    .faq__content {
+        flex-wrap: wrap;
+    }
+    .faq__tab {
+        width: 48%;
+        gap: 60px;
+    }
+
+    .faq__tab:not(:last-child) {
+        margin-bottom: 40px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .faq__tab {
         width: 100%;
     }
 }
